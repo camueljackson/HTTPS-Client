@@ -14,6 +14,7 @@ var https = require('https');
 
 
   response.on('data', function (data) {
+
     console.log('\n', data);
   });
 
@@ -26,8 +27,6 @@ var https = require('https');
 }
 
 getAndPrintHTMLChunks();
-
-
 
 
 
