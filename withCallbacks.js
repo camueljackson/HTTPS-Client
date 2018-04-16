@@ -1,7 +1,6 @@
-function getAndPrintHTML (options) {
+function getHTML (options, callback) {
 
-var https = require('https');
-
+  var https = require('https');
 
   https.get(options, function (response) {
 
@@ -10,11 +9,13 @@ var https = require('https');
 
 
   response.on('data', function (data) {
-    var buffed = '';
+    var buffedData = '';
     for ( var i = 0; i < data.length; i++) {
-      buffed += data[i];
+      buffedData += data[i];
     }
-    console.log(buffed);
+
+    callback(buffedData);
+
   });
 
   response.on('end', function() {
@@ -25,9 +26,21 @@ var https = require('https');
 
 }
 
-var requestOptions = {
-  host: 'sytantris.github.io',
-  path: '/http-examples/step3.html'
+function printHTML (html) {
+  console.log(html);
 };
 
-getAndPrintHTML(requestOptions);
+var requestOptions = {
+  host: 'sytantris.github.io',
+  path: '/http-examples/step4.html'
+};
+
+getHTML(requestOptions, printHTML)
+
+// *****************
+
+
+
+
+
+
